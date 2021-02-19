@@ -9,13 +9,13 @@
 }
 
 :root {
-  --color-primary: #843b62;
-  --color-secondary: #db7162;
-  --color-light: #fff;
+  --color-primary: #286576;
+  --color-secondary: #57c398;
+  --color-light: #f8fff8;
   --color-dark: #000;
-  --color-dark-light: rgba(0, 0, 0, 0.5);
-  --color-grey: #bba5af;
-  --color-bg: #bba5af;
+  --color-dark-light: rgba(117, 72, 72, 0.5);
+  --color-grey: #777;
+  --color-bg: #43cba1;
 }
 
 html {
@@ -49,30 +49,40 @@ body {
 .form {
   width: 30rem;
   position: absolute;
-  top: 10rem;
-  left: 10rem;
+  top: 8rem;
+  left: 2rem;
   -webkit-transition: 0.5s ease-in-out;
   transition: 0.5s ease-in-out;
   z-index: 1;
 }
 
 .form__container {
-  max-width: 42rem;
-  min-width: 42rem;
+  max-width: 40rem;
+  min-width: 40rem;
+  position: relative;
   height: 46rem;
   background: var(--color-light);
-  border-radius: 0.5rem;
-  position: relative;
-  overflow: hidden;
   -webkit-box-shadow: 0.2rem 0.2rem 1rem 0.2rem var(--color-dark-light);
   box-shadow: 0.2rem 0.2rem 1rem 0.2rem var(--color-dark-light);
+}
+
+.forms {
+  max-width: 32rem;
+  min-width: 32rem;
+  height: 46rem;
+  border-radius: 0.5rem;
+  overflow: hidden;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: var(--color-light);
 }
 
 .form__header h3 {
   text-transform: uppercase;
   text-align: left;
-  font-size: 2rem;
   margin-bottom: 4rem;
+  font-size: 2rem;
   color: var(--color-primary);
 }
 
@@ -85,10 +95,10 @@ body {
 
 .form__group input {
   height: 4.5rem;
-  width: 100%;
+  width: 90%;
   color: black;
   font-family: inherit;
-  font-size: 2rem;
+  font-size: 1.8rem;
   border: 0;
   border-bottom: 0.1rem solid var(--color-grey);
   outline: none;
@@ -115,7 +125,7 @@ body {
   top: 1rem;
   -webkit-transform: translateY(-50%);
   transform: translateY(-50%);
-  left: -2rem;
+  left: -1rem;
   color: var(--color-primary);
   font-size: 1.4rem;
 }
@@ -125,7 +135,7 @@ body {
   font-size: 2.4rem;
   color: var(--color-primary);
   top: 2rem;
-  right: 0;
+  right: 2rem;
 }
 
 .form__group-button {
@@ -146,12 +156,12 @@ body {
   background: -webkit-gradient(
     linear,
     left top,
-    right top,
+    left bottom,
     from(var(--color-secondary)),
     to(var(--color-primary))
   );
   background: linear-gradient(
-    to right,
+    to bottom,
     var(--color-secondary),
     var(--color-primary)
   );
@@ -162,15 +172,24 @@ body {
   cursor: pointer;
 }
 
-.form-2 {
-  left: 42rem;
+.form.acitve {
+  top: 8rem;
+  opacity: 1;
 }
 
-.form-3 {
-  left: 42rem;
+.form.previous {
+  top: -46rem;
+  opacity: 0;
+}
+
+.form.next {
+  top: 46rem;
+  opacity: 0;
 }
 
 .form__progress {
+  border-top-left-radius: 1rem;
+  border-top-right-radius: 1rem;
   position: absolute;
   width: 100%;
   height: 33.33337%;
@@ -191,11 +210,12 @@ body {
 }
 
 .form__progress-container {
-  width: 7rem;
-  height: 46rem;
-  position: absolute;
-  top: 0;
-  left: 0;
+  width: 8rem;
+  height: 47em;
+  border-top-left-radius: 1rem;
+  border-top-right-radius: 1rem;
+  top: -1rem;
+  right: -2rem;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -206,32 +226,47 @@ body {
   -webkit-box-direction: normal;
   -ms-flex-direction: column;
   flex-direction: column;
-  -webkit-box-shadow: 0.3rem 0 1rem -0.5rem var(--color-dark);
-  box-shadow: 0.3rem 0 1rem -0.5rem var(--color-dark);
+  -webkit-box-shadow: 0.3rem 0.3rem 1rem -0.5rem var(--color-dark);
+  box-shadow: 0.3rem 0.3rem 1rem -0.5rem var(--color-dark);
   z-index: 2;
+  position: absolute;
+  background-color: var(--color-light);
 }
 
 .form__progress::after {
   content: "";
-  width: 7rem;
-  height: 2rem;
+  width: 8rem;
+  height: 1rem;
   position: absolute;
   left: 0rem;
   top: 100%;
   background-color: var(--color-primary);
-  border-bottom-right-radius: 2rem;
-  border-bottom-left-radius: 2rem;
+  border-bottom-right-radius: 1rem;
+  border-bottom-left-radius: 1rem;
 }
 
 .form__step {
   -webkit-box-flex: 1;
   -ms-flex: 1;
   flex: 1;
-  width: 6rem;
-  font-size: 1.6rem;
+  width: 8rem;
+  font-size: 1.8rem;
   text-align: center;
-  padding-top: 100%;
-  z-index: 2;
-  color: var(--color-light);
+  padding-top: 60%;
+  color: var(--color-primary);
   position: relative;
+}
+
+.form__step .fas {
+  display: none;
+}
+
+.form__step.active h3 {
+  display: none;
+}
+
+.form__step.active .fas {
+  display: block;
+  font-size: 2rem;
+  color: var(--color-light);
 }
